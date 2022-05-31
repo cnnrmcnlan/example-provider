@@ -8,13 +8,13 @@ const app = require('express')();
 const authMiddleware = require('../middleware/auth.middleware');
 app.use(authMiddleware);
 app.use(require('./product.routes'));
-const server = app.listen("8080");
+const server = app.listen("5000");
 
 describe("Pact Verification", () => {
   it("validates the expectations of ProductService", () => {
     const baseOpts = {
       logLevel: "INFO",
-      providerBaseUrl: "http://localhost:8080",
+      providerBaseUrl: "http://localhost:5000",
       providerVersion: process.env.GIT_COMMIT,
       providerVersionTags: process.env.GIT_BRANCH ? [process.env.GIT_BRANCH] : [],
       verbose: process.env.VERBOSE === 'true'
